@@ -1,20 +1,45 @@
 //Global array of possible choices
-const choiceList = ["rock", "paper", "scissors"];
+const CHOICELIST = ["rock", "paper", "scissors"];
+let humanScore = 0;
+let computerScore = 0;
 
-//Get computer's choice
+//Get computer choice
 function getComputerChoice() {
-  return choiceList[Math.floor(Math.random() * 3)];
+  return CHOICELIST[Math.floor(Math.random() * 3)];
 }
 
-//Get human's choice
+//Get human choice
 function getHumanChoice() {
-  let humanChoice = ""
-  while (choiceList.indexOf(humanChoice) === -1) {
-    humanChoice = prompt("Choose rock, paper or scissors.").toLowerCase();
-  }
-  return humanChoice
-
+  let humanInput = "";
+  while (CHOICELIST.indexOf(humanInput) === -1) {
+    humanInput = prompt("Choose rock, paper or scissors.").toLowerCase()
+  };
+  return humanInput;
 }
+
+function playRound(humanChoice, computerChoice) {
+  let gameWinner;
+  if (humanChoice === computerChoice) {
+    gameWinner = "draw";
+  } else if (humanChoice === "rock" && computerChoice === "scissors") {
+    gameWinner = "human";
+    humanScore++;
+  } else if (humanChoice === "scissors" && computerChoice === "paper") {
+    gameWinner = "human";
+    humanScore++;
+  } else if (humanChoice === "paper" && computerChoice === "rock") {
+    gameWinner = "human";
+    humanScore++;
+  } else {
+    gameWinner = "computer";
+    computerScore++;
+  }
+  
+}
+
+//const humanSelection = getHumanChoice();
+//const computerSelection = getComputerChoice();
+
+//playRound(humanSelection, computerSelection);
+
 //console.log for testing. Will remove when satisfied
-console.log(getComputerChoice())
-console.log(getHumanChoice())
